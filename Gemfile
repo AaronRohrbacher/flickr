@@ -5,7 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# Image uploading
+gem "paperclip", "~> 5.0.0"
 # Rails jquery
 gem 'jquery-rails'
 # Bootstrap

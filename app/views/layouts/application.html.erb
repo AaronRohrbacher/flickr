@@ -9,6 +9,7 @@
   </head>
   <header>
     <% if current_user %>
+    <img class="rounded-circle" src='<%= current_user.avatar.url(:thumb) %>'></img>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
     <% else %>
     <h5>Please Login or Register <%= link_to('Login', new_user_session_path)  %> <%= link_to('Register', new_user_registration_path)  %></h5>

@@ -1,0 +1,13 @@
+<h1>PHOTOTS</h1>
+
+<li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></li>
+
+<ul class="thumbnails">
+  <% @photos.each do |photo| %>
+    <li class="span4">
+      <a href="#" class="thumbnail">
+        <p><%=photo.title%></p>
+      </a>
+    </li>
+  <% end %>
+</ul>

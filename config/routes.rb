@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       put "like", to: "photos#upvote"
       put "dislike", to: "photos#downvote"
     end
+    resources :tags
   end
 
   devise_for :users

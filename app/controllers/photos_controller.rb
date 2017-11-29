@@ -1,12 +1,16 @@
 class PhotosController < ApplicationController
 
+  def index
+    @photos = Photo.all
+  end
+
   def new
     @user = current_user
     @photo = @user.photos.new
   end
 
   def create
-    @photo = photo.new(photo_params)
+    @photo = Photo.new(photo_params)
     if @photo.save
       flash[:notice] = "photo successfully added!"
       redirect_to root_path
@@ -52,10 +56,6 @@ class PhotosController < ApplicationController
     @photo.downvote_by current_user
     @photos = photo.all
     redirect_to photo_path
-  end
-
-  def tag(thing)
-    @photo.tag_list.add(thing)
   end
 
   private
