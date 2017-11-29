@@ -5,8 +5,7 @@
 <ul class="thumbnails">
   <% @photos.each do |photo| %>
     <li class="span4">
-      <a href="#" class="thumbnail">
-        <img src = '<%= photo.image.url(:medium) %>'>
+      <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo)  %>
           <%= link_to like_photo_path(photo), method: :put do %>
           Upvote
           <%= photo.get_upvotes.size %>
@@ -15,6 +14,14 @@
           Downvote
           <%= photo.get_downvotes.size %>
       <% end %>
+      <% if photo.user_id == current_user.id %>
+          <p><%= link_to "Tag Photo", new_photo_tag_path(photo) %></p>
+          <p><%= link_to "Edit", edit_photo_path(photo) %></p>
+          <p><%= link_to "Delete", photo_path(photo),
+            :data => {:confirm => "You sure?",
+            :method => "delete"} %>
+          </p>
+        <% end %>
       </a>
     </li>
   <% end %>

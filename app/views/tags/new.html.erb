@@ -1,0 +1,14 @@
+<h1><%= @photo.title %></h1>
+<%= image_tag(@photo.image.url(:thumb)) %>
+
+<%= form_for [@photo, @tag] do |f| %>
+  <div class="form-group">
+
+    <%= f.label :tag %>
+    <%= f.text_field :tag, :class => "form-control" %>
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
+    <%= f.hidden_field(:photo_id, :value => @photo.id) %>
+
+    <%= f.button :Submit, :class => 'btn btn-info' %>
+  </div>
+<% end %>
