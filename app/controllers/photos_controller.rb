@@ -20,15 +20,15 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
   end
 
   def edit
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
   end
 
   def update
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
     if @photo.update(photo_params)
       flash[:notice] = "photo successfully updated!"
       redirect_to  photo_path
@@ -38,28 +38,28 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.destroy
     flash[:notice] = "photo successfully deleted!"
     redirect_to root_path
   end
 
   def upvote
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.upvote_by current_user
-    @photos = photo.all
-    redirect_to photo_path
+    @photos = Photo.all
+    redirect_to photos_path
   end
 
   def downvote
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.downvote_by current_user
-    @photos = photo.all
-    redirect_to photo_path
+    @photos = Photo.all
+    redirect_to photos_path
   end
 
   private
   def photo_params
-    params.require(:photo).permit(:title, :user_id) ## Rails 4 strong params usage
+    params.require(:photo).permit(:title, :image, :user_id) ## Rails 4 strong params usage
   end
 end
