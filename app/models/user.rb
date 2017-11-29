@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_tagger
   has_many :photos
 
   validates :email, :presence => true
