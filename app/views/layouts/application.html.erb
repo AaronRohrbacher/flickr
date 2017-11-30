@@ -8,13 +8,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <% if current_user %>
-    <img class="rounded-circle" src='<%= current_user.avatar.url(:thumb) %>'></img>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-    <% else %>
-    <h5>Please Login or Register <%= link_to('Login', new_user_session_path)  %> <%= link_to('Register', new_user_registration_path)  %></h5>
-    <% end %>
-  </header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-custom">
+      <% if current_user %>
+      <img class="rounded-circle" src='<%= current_user.avatar.url(:thumb) %>'></img>
+      <span class="icon-bar"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %></span>
+      <span class="icon-bar"><%= link_to 'Photos', photos_path, class: 'nav-link' %></span>
+      <span class="icon-bar"><%= link_to 'New Photo', new_photo_path, class: 'nav-link' %></span>
+      <% else %>
+      <span class="icon-bar"><%= link_to 'Login', new_user_session_path, class: 'nav-link' %></span>
+      <span class="icon-bar"><%= link_to 'Register', new_user_registration_path, class: 'nav-link'  %></span>
+      <% end %>
+    </nav>
+  </header><br>
   <body>
     <div class='container'>
       <% flash.each do |key, value| %>
