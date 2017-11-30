@@ -8,11 +8,11 @@
       <div class = "col-md-4">
       <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo)  %><br>
           <%= link_to like_photo_path(photo), method: :put do %>
-          Upvote
+          <%= image_tag('like.png', size: '16') %>
           <%= photo.get_upvotes.size %>
           <% end %>
           <%= link_to dislike_photo_path(photo), method: :put do %>
-          Downvote
+          <%= image_tag('dislike.png', size: '16') %>
           <%= photo.get_downvotes.size %>
       <% end %>
       <% if photo.user_id == current_user.id %>

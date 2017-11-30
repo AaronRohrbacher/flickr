@@ -1,1 +1,9 @@
-hello
+<%= image_tag(@photo.image.url(:original)) %>
+<h2><%= @photo.title %></h2>
+<h3> Tags: </h3>
+<ul>
+  <% @photo.tags.each do |tag| %>
+  <li><%= tag.tag %></li>
+  <% end %>
+</ul>
+<%= link_to 'add tags', new_photo_tag_path(@photo) %>

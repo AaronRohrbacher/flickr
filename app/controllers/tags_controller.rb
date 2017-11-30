@@ -7,12 +7,14 @@ class TagsController < ApplicationController
 
   def new
     @user = current_user
+    @users = User.all
     @photo = Photo.find(params[:photo_id])
     @tag = @photo.tags.new
   end
 
   def create
     @user = current_user
+    @users = User.all
     @photo = Photo.find(params[:photo_id])
     @tag = @photo.tags.new(tag_params)
     if @tag.save

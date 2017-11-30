@@ -17,14 +17,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- ## THIS IS KEY FOR LOGGING IN WITH USERNAME INSTEAD OF EMAIL:
-
- ## ALSO GO TO CONFIG INITIALIZERS DEVISE.RB and UNCOMMENT LINE 37 AND CHANGE TO USERNAME
- #   def email_required?
- #     false
- #   end
- #
- #   def email_changed?
- #     false
- #   end
- end
+  def self.search(search)
+    where("first_name ILIKE ? OR last_name ILIKE ? ", "%#{search}%", "%#{search}%")
+  end
+end

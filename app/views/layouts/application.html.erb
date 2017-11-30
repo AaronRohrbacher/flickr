@@ -10,7 +10,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light bg-faded">
-      <% if current_user %>  
+      <% if current_user %>
       <img class="rounded-circle" src='<%= current_user.avatar.url(:thumb) %>'></img>
       <% end %>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +25,12 @@
             <%= link_to 'New Photo', new_photo_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
+            <%= link_to 'My Photos', "/users/#{current_user.id}", class: 'nav-link'%>
+          </li>
+          <li class="nav-item">
             <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'%>
           </li>
+
           <% else %>
           <li class="nav-item">
             <%= link_to 'Login', new_user_session_path, class: 'nav-link'%>
@@ -38,10 +42,12 @@
 
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <% if current_user %>
+          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Find Friends!" %>
+              <%= submit_tag "Search", :name => nil %>
+          <% end %>
+        <% end %>
       </div>
     </nav>
 

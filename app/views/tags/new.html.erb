@@ -11,4 +11,12 @@
 
     <%= f.button :Submit, :class => 'btn btn-info' %>
   </div>
+
+  <%= form_for [@photo, @tag] do |f| %>
+    <% options = options_from_collection_for_select(@users, 'first_name', 'first_name') %>
+    <%= f.select :tag,  options %>
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
+    <%= f.hidden_field(:photo_id, :value => @photo.id) %>
+    <%= f.submit class: 'button btn-success'%>
+  <% end%>
 <% end %>
