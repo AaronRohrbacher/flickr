@@ -12,6 +12,7 @@
       <% if current_user %>
       <img class="rounded-circle" src='<%= current_user.avatar.url(:thumb) %>'></img>
       <span class="icon-bar"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %></span>
+      <span class="icon-bar"><%= link_to 'Edit Account', edit_user_registration_path, class: 'nav-link' %></span>
       <span class="icon-bar"><%= link_to 'Photos', photos_path, class: 'nav-link' %></span>
       <span class="icon-bar"><%= link_to 'New Photo', new_photo_path, class: 'nav-link' %></span>
       <% else %>
