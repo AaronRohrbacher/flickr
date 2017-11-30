@@ -20,11 +20,11 @@ class User < ApplicationRecord
  ## THIS IS KEY FOR LOGGING IN WITH USERNAME INSTEAD OF EMAIL:
 
  ## ALSO GO TO CONFIG INITIALIZERS DEVISE.RB and UNCOMMENT LINE 37 AND CHANGE TO USERNAME
-   def email_required?
-     false
-   end
-
-   def email_changed?
-     false
-   end
+ #   def email_required?
+ #     false
+ #   end
+ #
+ #   def email_changed?
+ #     false
+ #   end
  end

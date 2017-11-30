@@ -2,10 +2,11 @@
 
 
 
-<ul class="thumbnails">
+  <% counter = 0 %>
+  <div class = "row">
   <% @photos.each do |photo| %>
-    <li class="span4">
-      <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo)  %>
+      <div class = "col-md-4">
+      <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo)  %><br>
           <%= link_to like_photo_path(photo), method: :put do %>
           Upvote
           <%= photo.get_upvotes.size %>
@@ -22,7 +23,11 @@
             :method => "delete"} %>
           </p>
         <% end %>
-      </a>
-    </li>
+      </div>
+        <% counter += 1 %>
+        <% if counter == 3 %>
+          <% counter = 0 %>
+          </div>
+          <div class = "row">
+        <% end %>
   <% end %>
-</ul>

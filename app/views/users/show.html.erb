@@ -1,2 +1,32 @@
 hi
 <%= @user.username %>
+
+<% counter = 0 %>
+<div class = "row">
+<% @photos.each do |photo| %>
+    <div class = "col-md-4">
+    <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo)  %><br>
+        <%= link_to like_photo_path(photo), method: :put do %>
+        Upvote
+        <%= photo.get_upvotes.size %>
+        <% end %>
+        <%= link_to dislike_photo_path(photo), method: :put do %>
+        Downvote
+        <%= photo.get_downvotes.size %>
+    <% end %>
+    <% if photo.user_id == current_user.id %>
+        <p><%= link_to "Tag Photo", new_photo_tag_path(photo) %></p>
+        <p><%= link_to "Edit", edit_photo_path(photo) %></p>
+        <p><%= link_to "Delete", photo_path(photo),
+          :data => {:confirm => "You sure?",
+          :method => "delete"} %>
+        </p>
+      <% end %>
+    </div>
+      <% counter += 1 %>
+      <% if counter == 3 %>
+        <% counter = 0 %>
+        </div>
+        <div class = "row">
+      <% end %>
+<% end %>
