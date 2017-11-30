@@ -11,6 +11,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @photos = @user.photos
+    @tags = @user.tags
   end
 end

@@ -3,6 +3,7 @@ class Photo < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   has_many :tags
+  has_many :comments
   belongs_to :user
 
   acts_as_votable
