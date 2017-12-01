@@ -1,9 +1,16 @@
 <%= image_tag(@photo.image.url(:original)) %>
 <h2><%= @photo.title %></h2>
+<h3> Comments: </h3>
+<% @photo.comments.each do |comment| %>
+  <p><strong><%= comment.user.first_name %> says: </strong></p>
+  <p><%= comment.content %></p>
+  <hr>
+<% end %>
 <h3> Tags: </h3>
 <ul>
   <% @photo.tags.each do |tag| %>
   <li><%= tag.tag %></li>
   <% end %>
 </ul>
+<%= link_to 'add comment', new_photo_comment_path(@photo) %>
 <%= link_to 'add tags', new_photo_tag_path(@photo) %>

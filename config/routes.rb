@@ -7,13 +7,17 @@ Rails.application.routes.draw do
       put "dislike", to: "photos#downvote"
     end
     resources :tags
+    resources :comments do
+      member do
+        put "like", to: "comments#upvote"
+        put "dislike", to: "comments#downvote"
+      end
+    end
   end
 
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users do
-    get :autocomplete_user_first_name, :on => :collection
-  end
+  resources :users
 end

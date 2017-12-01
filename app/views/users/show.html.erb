@@ -1,8 +1,9 @@
 hi
 <%= @user.username %>
 
-<% counter = 0 %>
+<h3>Photos <%= @user.first_name + ' ' + @user.last_name %> is tagged in:</h3>
 <div class = "row">
+<% counter = 0 %>
 <% @tags.each do |tag| %>
     <div class = "col-md-4">
     <%= link_to image_tag(tag.photo.image.url(:medium)), photo_path(tag.photo)  %><br>

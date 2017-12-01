@@ -4,6 +4,11 @@ class PhotosController < ApplicationController
     @photos = Photo.all
   end
 
+  def user_photos
+    @user = current_user
+    @photos = @user.photos
+  end
+
   def new
     @user = current_user
     @photo = @user.photos.new
@@ -13,7 +18,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     if @photo.save
       flash[:notice] = "photo successfully added!"
-      redirect_to root_path
+      redirect_to photo_path(@photo)
     else
       render :new
     end

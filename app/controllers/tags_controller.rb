@@ -19,7 +19,7 @@ class TagsController < ApplicationController
     @tag = @photo.tags.new(tag_params)
     if @tag.save
       flash[:notice] = "tag successfully added!"
-      redirect_to root_path
+      redirect_to photo_path(@photo)
     else
       render :new
     end
